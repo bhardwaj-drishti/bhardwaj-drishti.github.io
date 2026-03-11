@@ -34,6 +34,8 @@ nav {
   background: rgba(253,248,243,0.95);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
+}
+.nav-inner {
   height: 60px;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 48px;
@@ -46,6 +48,39 @@ nav {
   transition: color .18s;
 }
 .nav-links a:hover { color: var(--rose); }
+
+/* Hamburger */
+.nav-toggle {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-toggle span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--text); transition: all .25s;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.nav-drawer {
+  display: none; flex-direction: column;
+  border-top: 1px solid var(--border);
+}
+.nav-drawer.open { display: flex; }
+.nav-drawer a {
+  font-size: .8rem; font-weight: 400; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted); text-decoration: none;
+  padding: 14px 20px; border-bottom: 1px solid var(--border);
+  transition: color .18s, background .18s;
+}
+.nav-drawer a:last-child { border-bottom: none; }
+.nav-drawer a:hover { color: var(--rose); background: var(--cream); }
+
+@media (max-width: 640px) {
+  .nav-inner { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+}
 
 /* HERO */
 #hero {
@@ -259,13 +294,24 @@ footer p { font-size: .72rem; color: var(--muted); }
 <body>
 
 <nav>
-  <span class="nav-name">Drishti Bhardwaj</span>
-  <ul class="nav-links">
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact-section">Contact</a></li>
-  </ul>
+  <div class="nav-inner">
+    <span class="nav-name">Drishti Bhardwaj</span>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact-section">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-drawer" id="navDrawer">
+    <a href="#experience" onclick="closeNav()">Experience</a>
+    <a href="#projects" onclick="closeNav()">Projects</a>
+    <a href="#skills" onclick="closeNav()">Skills</a>
+    <a href="#contact-section" onclick="closeNav()">Contact</a>
+  </div>
 </nav>
 
 <section id="hero">
@@ -429,13 +475,13 @@ footer p { font-size: .72rem; color: var(--muted); }
       <p class="section-label">Get in touch</p>
       <h2 class="section-title" style="margin-bottom:10px">Let's <em>connect</em></h2>
       <p>I'm open to new opportunities, collaborations, and conversations. Feel free to reach out through any of the channels below.</p>
-      <a href="mailto:drishtibhardwaj202@gmail.com" class="btn-primary">Send a Message</a>
+      <a href="#" class="btn-primary" id="emailBtn1">Send a Message</a>
     </div>
     <div>
       <div class="contact-links">
-        <a href="mailto:drishtibhardwaj202@gmail.com" class="contact-link">
+        <a href="#" class="contact-link" id="emailBtn2">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M1 4l6 4 6-4" stroke="currentColor" stroke-width="1.2"/></svg>
-          drishtibhardwaj202@gmail.com
+          drishtibhardwaj202 [at] gmail.com
         </a>
         <a href="https://linkedin.com/in/drishtibhardwaj" target="_blank" class="contact-link">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M4 6v4M4 4.5v.5M6.5 10V7.5C6.5 6.67 7.17 6 8 6s1.5.67 1.5 1.5V10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
@@ -459,13 +505,41 @@ footer p { font-size: .72rem; color: var(--muted); }
   <p>Jalandhar, Punjab, India</p>
 </footer>
 
+
 <script>
-const obs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) setTimeout(() => e.target.classList.add('on'), i * 50);
+// Set email links via JS to avoid spam bots
+(function() {
+  var u = 'drishtibhardwaj202';
+  var d = 'gmail.com';
+  var e = u + '@' + d;
+  var m = 'mailto:' + e;
+  var b1 = document.getElementById('emailBtn1');
+  var b2 = document.getElementById('emailBtn2');
+  if (b1) b1.href = m;
+  if (b2) { b2.href = m; b2.childNodes[b2.childNodes.length-1].textContent = ' ' + e; }
+})();
+
+// Hamburger menu
+var toggle = document.getElementById('navToggle');
+var drawer = document.getElementById('navDrawer');
+if (toggle && drawer) {
+  toggle.addEventListener('click', function() {
+    toggle.classList.toggle('open');
+    drawer.classList.toggle('open');
+  });
+}
+function closeNav() {
+  if (toggle) toggle.classList.remove('open');
+  if (drawer) drawer.classList.remove('open');
+}
+
+// Scroll reveal
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e, i) {
+    if (e.isIntersecting) setTimeout(function() { e.target.classList.add('on'); }, i * 50);
   });
 }, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
 </script>
 </body>
 </html>
