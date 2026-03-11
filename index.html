@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Drishti Bhardwaj</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #fdf8f3;
+  --white: #ffffff;
+  --border: #e5dbd2;
+  --text: #1c1916;
+  --muted: #7a6e67;
+  --rose: #b85c45;
+  --rose-light: #f2d5cc;
+  --sage: #7a9470;
+  --cream: #f5ede3;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(253,248,243,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+}
+.nav-name { font-size: .9rem; font-weight: 500; color: var(--text); letter-spacing: .01em; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  font-size: .78rem; font-weight: 400; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted); text-decoration: none;
+  transition: color .18s;
+}
+.nav-links a:hover { color: var(--rose); }
+
+/* HERO */
+#hero {
+  padding-top: 60px;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero-inner {
+  max-width: 1040px; margin: 0 auto;
+  padding: 72px 48px;
+  width: 100%;
+  display: flex; align-items: center; gap: 64px;
+}
+.hero-photo {
+  width: 180px; height: 180px; border-radius: 50%;
+  overflow: hidden; flex-shrink: 0;
+  border: 3px solid var(--border);
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+.hero-text {}
+.hero-label {
+  font-size: .72rem; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--sage); margin-bottom: 14px;
+}
+.hero-text h1 {
+  font-family: 'Lora', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500; line-height: 1.15;
+  color: var(--text); margin-bottom: 16px;
+}
+.hero-text h1 em { font-style: italic; color: var(--rose); }
+.hero-bio {
+  font-size: .9rem; color: var(--muted);
+  line-height: 1.8; max-width: 500px; margin-bottom: 28px;
+}
+.hero-actions { display: flex; gap: 12px; align-items: center; }
+.btn-primary {
+  display: inline-block;
+  padding: 10px 24px;
+  background: var(--rose); color: #fff;
+  font-size: .78rem; font-weight: 500; letter-spacing: .06em;
+  text-transform: uppercase; text-decoration: none;
+  transition: background .18s;
+}
+.btn-primary:hover { background: #a44f3a; }
+.btn-ghost {
+  display: inline-block;
+  padding: 10px 24px;
+  border: 1px solid var(--border); color: var(--muted);
+  font-size: .78rem; font-weight: 400; letter-spacing: .06em;
+  text-transform: uppercase; text-decoration: none;
+  transition: border-color .18s, color .18s;
+}
+.btn-ghost:hover { border-color: var(--rose); color: var(--rose); }
+
+/* SECTIONS */
+.section {
+  max-width: 1040px; margin: 0 auto;
+  padding: 72px 48px;
+  border-bottom: 1px solid var(--border);
+}
+.section-label {
+  font-size: .7rem; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--sage); margin-bottom: 8px;
+}
+.section-title {
+  font-family: 'Lora', serif;
+  font-size: 1.6rem; font-weight: 500;
+  color: var(--text); margin-bottom: 40px;
+}
+.section-title em { font-style: italic; color: var(--rose); }
+
+/* EXPERIENCE */
+.exp-item {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr 160px;
+  gap: 32px; align-items: start;
+}
+.exp-item:last-child { border-bottom: 1px solid var(--border); }
+.exp-role { font-size: .95rem; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.exp-company { font-size: .82rem; color: var(--rose); margin-bottom: 12px; }
+.exp-points { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.exp-points li {
+  font-size: .85rem; color: var(--muted); line-height: 1.7;
+  padding-left: 14px; position: relative;
+}
+.exp-points li::before { content: '–'; position: absolute; left: 0; color: var(--border); }
+.exp-right { text-align: right; }
+.exp-date {
+  font-size: .72rem; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted);
+  display: block; margin-bottom: 6px;
+}
+.exp-type {
+  font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--sage); background: var(--cream);
+  padding: 3px 10px; display: inline-block;
+}
+
+/* PROJECTS */
+.proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.proj-card { background: var(--white); padding: 28px 24px; transition: background .15s; }
+.proj-card:hover { background: var(--cream); }
+.proj-num { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+.proj-name { font-size: .92rem; font-weight: 500; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
+.proj-desc { font-size: .82rem; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+.proj-pills { display: flex; flex-wrap: wrap; gap: 5px; }
+.proj-pill {
+  font-size: .65rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--rose); border: 1px solid var(--rose-light); padding: 3px 8px;
+}
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.skill-block { background: var(--white); padding: 28px; }
+.skill-block-title {
+  font-size: .68rem; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+}
+.skill-list { display: flex; flex-wrap: wrap; gap: 7px; }
+.skill-chip {
+  font-size: .8rem; font-weight: 400;
+  padding: 5px 13px; border: 1px solid var(--border);
+  color: var(--text); background: var(--bg); transition: border-color .15s, color .15s;
+}
+.skill-chip:hover { border-color: var(--rose); color: var(--rose); }
+
+/* CERTIFICATIONS */
+.cert-list { border-top: 1px solid var(--border); }
+.cert-row {
+  display: grid; grid-template-columns: 36px 1fr auto;
+  align-items: center; gap: 20px;
+  padding: 18px 0; border-bottom: 1px solid var(--border);
+}
+.cert-n { font-size: .7rem; color: var(--muted); font-weight: 400; }
+.cert-name { font-size: .87rem; color: var(--text); }
+.cert-org { font-size: .75rem; color: var(--muted); }
+
+/* ACHIEVEMENTS */
+.ach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.ach-card {
+  background: var(--white); border: 1px solid var(--border);
+  padding: 28px; transition: border-color .18s;
+}
+.ach-card:hover { border-color: var(--rose); }
+.ach-eyebrow { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--sage); margin-bottom: 10px; }
+.ach-title { font-size: .95rem; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+.ach-desc { font-size: .83rem; color: var(--muted); line-height: 1.7; }
+
+/* EDUCATION */
+.edu-item {
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: 24px;
+  padding: 24px 0; border-top: 1px solid var(--border);
+}
+.edu-item:last-child { border-bottom: 1px solid var(--border); }
+.edu-school { font-size: .95rem; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.edu-degree { font-size: .82rem; color: var(--muted); }
+.edu-year { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.edu-score { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 500; color: var(--rose); text-align: right; }
+.edu-score small { display: block; font-family: 'Inter', sans-serif; font-size: .62rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+
+/* CONTACT */
+#contact-section { background: var(--cream); border-top: 1px solid var(--border); }
+.contact-inner {
+  max-width: 1040px; margin: 0 auto; padding: 72px 48px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
+}
+.contact-left h2 { margin-bottom: 10px; }
+.contact-left p { font-size: .88rem; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
+.contact-links { border: 1px solid var(--border); }
+.contact-link {
+  display: flex; align-items: center; gap: 12px;
+  padding: 15px 18px; border-bottom: 1px solid var(--border);
+  font-size: .83rem; color: var(--muted); text-decoration: none;
+  background: var(--white); transition: background .15s, color .15s;
+}
+.contact-link:last-child { border-bottom: none; }
+.contact-link:hover { background: var(--rose); color: #fff; }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 18px 48px;
+  display: flex; justify-content: space-between;
+  background: var(--white);
+}
+footer p { font-size: .72rem; color: var(--muted); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.on { opacity: 1; transform: none; }
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .hero-inner { padding: 48px 20px; flex-direction: column; gap: 32px; }
+  .hero-photo { width: 120px; height: 120px; }
+  .section { padding: 56px 20px; }
+  .proj-grid, .skills-grid, .ach-grid { grid-template-columns: 1fr; }
+  .exp-item { grid-template-columns: 1fr; }
+  .exp-right { text-align: left; }
+  .edu-item { grid-template-columns: 1fr; }
+  .edu-score { text-align: left; }
+  .contact-inner { padding: 56px 20px; grid-template-columns: 1fr; gap: 40px; }
+  footer { padding: 16px 20px; flex-direction: column; gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Drishti Bhardwaj</span>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact-section">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-photo reveal">
+      <img src="https://media.licdn.com/dms/image/v2/D5635AQHn-bl2RUPn7g/profile-framedphoto-shrink_400_400/B56Zrjkfh7MAAc-/0/1764754585973?e=1773831600&v=beta&t=3_uYts11EPreLVD5mpgjifdqo9NJTmK5x2lW6b_P97g" alt="Drishti Bhardwaj"/>
+    </div>
+    <div class="hero-text reveal">
+      <p class="hero-label">UI/UX Designer &amp; Frontend Developer</p>
+      <h1>Drishti <em>Bhardwaj</em></h1>
+      <p class="hero-bio">Detail-oriented and empathetic designer with a solid technical foundation. I turn complex problems into clear, user-friendly experiences — currently pursuing B.Tech in AI & ML at Lovely Professional University.</p>
+      <div class="hero-actions">
+        <a href="#experience" class="btn-primary">View Work</a>
+        <a href="#contact-section" class="btn-ghost">Contact Me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section reveal" id="experience">
+  <p class="section-label">Experience</p>
+  <h2 class="section-title">Where I've <em>worked</em></h2>
+  <div class="exp-item">
+    <div>
+      <div class="exp-role">UI &amp; Graphic Design Intern</div>
+      <div class="exp-company">LazyEats</div>
+      <ul class="exp-points">
+        <li>Designed visually clear UI components and digital assets focused on improving user understanding and engagement.</li>
+        <li>Incorporated stakeholder and user feedback to enhance clarity, usability, and overall customer experience.</li>
+      </ul>
+    </div>
+    <div class="exp-right">
+      <span class="exp-date">Sept – Dec 2025</span>
+      <span class="exp-type">On-Site</span>
+    </div>
+  </div>
+  <div class="exp-item">
+    <div>
+      <div class="exp-role">Frontend UI/UX Developer Intern</div>
+      <div class="exp-company">Maruti Suzuki — Alankar Auto Sales</div>
+      <ul class="exp-points">
+        <li>Designed and improved responsive car listing interfaces aligned with real customer workflows and usability needs.</li>
+        <li>Worked with sales and non-technical teams to translate customer concerns into user-friendly solutions.</li>
+      </ul>
+    </div>
+    <div class="exp-right">
+      <span class="exp-date">June – Aug 2025</span>
+      <span class="exp-type">Hybrid</span>
+    </div>
+  </div>
+</div>
+
+<div class="section reveal" id="projects">
+  <p class="section-label">Projects</p>
+  <h2 class="section-title">Things I've <em>built</em></h2>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-num">01</div>
+      <div class="proj-name">Car Listing UI</div>
+      <div class="proj-desc">Responsive Figma interface focused on improving user navigation, clarity, and decision-making for automotive browsing.</div>
+      <div class="proj-pills"><span class="proj-pill">Figma</span><span class="proj-pill">UI/UX</span><span class="proj-pill">Responsive</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">02</div>
+      <div class="proj-name">Bridal Clothing Website UI</div>
+      <div class="proj-desc">E-commerce interface emphasising a smooth customer journey from product discovery through to checkout.</div>
+      <div class="proj-pills"><span class="proj-pill">Figma</span><span class="proj-pill">E-commerce</span><span class="proj-pill">UX Flow</span></div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">03</div>
+      <div class="proj-name">Real-Time Navigation — IoT</div>
+      <div class="proj-desc">Low-bandwidth navigation solution for low-connectivity areas, demonstrating user-focused engineering and problem solving.</div>
+      <div class="proj-pills"><span class="proj-pill">IoT</span><span class="proj-pill">Python</span><span class="proj-pill">Networking</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="section reveal" id="skills">
+  <p class="section-label">Capabilities</p>
+  <h2 class="section-title">Skills &amp; <em>Tools</em></h2>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <div class="skill-block-title">Technical</div>
+      <div class="skill-list">
+        <span class="skill-chip">Python</span><span class="skill-chip">C++</span><span class="skill-chip">Java</span><span class="skill-chip">MySQL</span><span class="skill-chip">Flutter</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title">Design</div>
+      <div class="skill-list">
+        <span class="skill-chip">Figma</span><span class="skill-chip">Canva</span><span class="skill-chip">UI Design</span><span class="skill-chip">UX Research</span><span class="skill-chip">Prototyping</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title">Tools &amp; Platforms</div>
+      <div class="skill-list">
+        <span class="skill-chip">Google Workspace</span><span class="skill-chip">MS Excel</span><span class="skill-chip">Git</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title">Soft Skills</div>
+      <div class="skill-list">
+        <span class="skill-chip">Communication</span><span class="skill-chip">Problem Solving</span><span class="skill-chip">Team Collaboration</span><span class="skill-chip">Documentation</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section reveal" id="certs">
+  <p class="section-label">Learning</p>
+  <h2 class="section-title"><em>Certifi</em>cations</h2>
+  <div class="cert-list">
+    <div class="cert-row"><div class="cert-n">01</div><div class="cert-name">Frontend Development</div><div class="cert-org">freeCodeCamp</div></div>
+    <div class="cert-row"><div class="cert-n">02</div><div class="cert-name">Figma UI/UX Mastery</div><div class="cert-org">Design Course</div></div>
+    <div class="cert-row"><div class="cert-n">03</div><div class="cert-name">Fundamentals of Network Communication</div><div class="cert-org">University of Colorado — Coursera</div></div>
+    <div class="cert-row"><div class="cert-n">04</div><div class="cert-name">Flutter Bootcamp for Cross-Platform App Development</div><div class="cert-org">Bootcamp</div></div>
+  </div>
+</div>
+
+<div class="section reveal" id="achievements">
+  <p class="section-label">Recognition</p>
+  <h2 class="section-title">Achieve<em>ments</em></h2>
+  <div class="ach-grid">
+    <div class="ach-card">
+      <div class="ach-eyebrow">Hackathon · 2025</div>
+      <div class="ach-title">Smart India Hackathon</div>
+      <p class="ach-desc">Cleared the internal round and qualified for the national final round of SIH 2025 — one of India's largest student hackathon platforms.</p>
+    </div>
+    <div class="ach-card">
+      <div class="ach-eyebrow">Entrance Exam · 2023</div>
+      <div class="ach-title">JEE Mains — 95.3 Percentile</div>
+      <p class="ach-desc">Secured a 95.3 percentile in JEE Mains, placing within the top 5% of over a million candidates nationwide.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section reveal" id="education">
+  <p class="section-label">Background</p>
+  <h2 class="section-title"><em>Educa</em>tion</h2>
+  <div class="edu-item">
+    <div>
+      <div class="edu-school">Lovely Professional University</div>
+      <div class="edu-degree">B.Tech — Artificial Intelligence &amp; Machine Learning</div>
+      <div class="edu-year">2023 — Present</div>
+    </div>
+    <div class="edu-score">8.2 <small>CGPA</small></div>
+  </div>
+  <div class="edu-item">
+    <div>
+      <div class="edu-school">Class 12 — CBSE</div>
+      <div class="edu-degree">Senior Secondary Education</div>
+      <div class="edu-year">2021</div>
+    </div>
+    <div class="edu-score">81% <small>Score</small></div>
+  </div>
+</div>
+
+<div id="contact-section">
+  <div class="contact-inner reveal">
+    <div class="contact-left">
+      <p class="section-label">Get in touch</p>
+      <h2 class="section-title" style="margin-bottom:10px">Let's <em>connect</em></h2>
+      <p>I'm open to new opportunities, collaborations, and conversations. Feel free to reach out through any of the channels below.</p>
+      <a href="mailto:drishtibhardwaj202@gmail.com" class="btn-primary">Send a Message</a>
+    </div>
+    <div>
+      <div class="contact-links">
+        <a href="mailto:drishtibhardwaj202@gmail.com" class="contact-link">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M1 4l6 4 6-4" stroke="currentColor" stroke-width="1.2"/></svg>
+          drishtibhardwaj202@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/drishtibhardwaj" target="_blank" class="contact-link">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M4 6v4M4 4.5v.5M6.5 10V7.5C6.5 6.67 7.17 6 8 6s1.5.67 1.5 1.5V10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          linkedin.com/in/drishtibhardwaj
+        </a>
+        <a href="https://github.com/drishtibhardwaj" target="_blank" class="contact-link">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M5 11.5c0-1 .5-2.5 2-2.5s2 1.5 2 2.5" stroke="currentColor" stroke-width="1.2"/></svg>
+          github.com/drishtibhardwaj
+        </a>
+        <a href="tel:+919234617846" class="contact-link">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4.5 2h-2A1.5 1.5 0 001 3.5C1 8.75 5.25 13 10.5 13A1.5 1.5 0 0012 11.5v-2l-3-1-1 1.5c-1-.5-2.5-2-3-3L6.5 5l-2-2.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          +91 92346 17846
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Drishti Bhardwaj</p>
+  <p>Jalandhar, Punjab, India</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('on'), i * 50);
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
